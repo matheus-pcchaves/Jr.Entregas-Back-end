@@ -7,7 +7,7 @@ const router = Router()
 try {
     router.use("/users", usersRoutes)
     router.use("/entregadores", entregadoresRoutes)
-    router.use("/cidades", citiesRoutes)
+    router.use("/cities", citiesRoutes)
 } catch (error) {
     console.log(error)
 }

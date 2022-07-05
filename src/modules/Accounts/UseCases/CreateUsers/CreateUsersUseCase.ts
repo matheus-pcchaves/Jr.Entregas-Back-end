@@ -1,9 +1,12 @@
+import { inject, injectable } from "tsyringe";
 import { AppError } from "../../../../errors/AppError";
 import { IUsersRepository, IUsersDTO } from "../../repositories/IUsersRepository";
 
+@injectable()
 class CreateUsersUseCase {
 
     constructor(
+        @inject("UsersRepository")
         private usersRepository: IUsersRepository
     ){}
 

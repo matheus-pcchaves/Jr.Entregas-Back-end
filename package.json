@@ -14,6 +14,7 @@
     "pg": "8.7.3",
     "reflect-metadata": "0.1.13",
     "ts-node-dev": "1.1.6",
+    "tsyringe": "^4.7.0",
     "typeorm": "0.2.45",
     "uuid": "^8.3.2"
   },

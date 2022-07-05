@@ -1,15 +1,14 @@
 import { Router } from "express"
-import { createCitiesController } from "../modules/Cities/UseCases/CreateCities"
-import { listCitiesController } from "../modules/Cities/UseCases/ListCities"
+import { CreateCitiesController } from "../modules/Cities/UseCases/CreateCities/CreateCitiesController"
+import { ListCitiesController } from "../modules/Cities/UseCases/ListCities/ListCitiesController"
 
 const citiesRoutes = Router()
 
-citiesRoutes.post("/create", (request, response) => {
-    return createCitiesController.handle(request, response)
-})
+const createCitiesController = new CreateCitiesController()
+const listCitiesController = new ListCitiesController()
 
-citiesRoutes.get("/list", (request, response) => {
-    return listCitiesController.handle(request, response)
-})
+citiesRoutes.post("/create", createCitiesController.handle)
+
+citiesRoutes.get("/list", listCitiesController.handle)
 
 export { citiesRoutes }

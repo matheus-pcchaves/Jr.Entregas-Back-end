@@ -7,6 +7,8 @@ import { router } from "./routes"
 
 import "./database"
 
+import "./shared/container"
+
 const app = express()
 
 app.use(express.json())

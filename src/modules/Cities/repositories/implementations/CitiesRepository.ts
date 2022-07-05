@@ -1,48 +1,41 @@
-import { Cidade } from "../../models/Cidade";
+import { getRepository, Repository } from "typeorm";
+import { City } from "../../entities/City";
 import { ICitiesDTO, ICitiesRepository } from "../ICitiesRepository";
 
 class CitiesRepository implements ICitiesRepository{
-    private cidades: Cidade []
 
-    public static INSTANCE: CitiesRepository
+    private repository: Repository<City>
 
     public constructor(){
-        this.cidades = []
+        this.repository = getRepository(City)
     }
 
-    public static getInstance(): CitiesRepository{
-        if(!CitiesRepository.INSTANCE){
-            CitiesRepository.INSTANCE = new CitiesRepository()
-        }
+    async create({name, state}: ICitiesDTO): Promise<void> {
 
-        return CitiesRepository.INSTANCE
-    }
-
-    create({name, state}: ICitiesDTO): void {
-        const cidade = new Cidade()
-
-        Object.assign(cidade, {
+        const city = this.repository.create({
             name,
             state
         })
 
-        this.cidades.push(cidade)
+        await this.repository.save(city)
     }
 
-    list(): Cidade[] {
-        return this.cidades
+    async list(): Promise<City[]> {
+        const cities = this.repository.find()
+
+        return cities
     }
 
-    findByName(name: string): Cidade {
-        const cidade = this.cidades.find((cidade) => cidade.name === name)
+    async findByName(name: string): Promise<City> {
+        const city = this.repository.findOne({name})
 
-        return cidade
+        return city
     }
 
-    async findById(id: string): Promise<Cidade> {
-        const cidade = await this.cidades.find((cidade) => cidade.id === id)
+    async findById(id: string): Promise<City> {
+        const city = this.repository.findOne({id})
 
-        return cidade
+        return city
     }
 }
 

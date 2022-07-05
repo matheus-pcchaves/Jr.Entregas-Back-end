@@ -1,16 +1,16 @@
 import { Router } from "express"
-import usersController from "../modules/Accounts/UseCases/CreateUsers/index"
-import { entregadoresController } from "../modules/Accounts/UseCases/CreateEntregadores"
+import { CreateUsersController } from "../modules/Accounts/UseCases/CreateUsers/CreateUsersController"
+import { deliverymansController } from "../modules/Accounts/UseCases/CreateDeliverymans"
 
 const usersRoutes = Router()
 const entregadoresRoutes = Router()
 
-usersRoutes.post("/create", (request, response) => {
-    usersController().handle(request, response)
-})
+const usersController = new CreateUsersController()
+
+usersRoutes.post("/create", usersController.handle)
 
 entregadoresRoutes.post("/create", (request, response) => {
-    entregadoresController.handle(request, response)
+    deliverymansController.handle(request, response)
 })
 
 export { usersRoutes, entregadoresRoutes }

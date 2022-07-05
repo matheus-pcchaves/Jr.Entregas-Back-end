@@ -1,4 +1,4 @@
-import { Cidade } from "../models/Cidade"
+import { City} from "../entities/City"
 
 interface ICitiesDTO {
     name: string;
@@ -6,10 +6,10 @@ interface ICitiesDTO {
 }
 
 interface ICitiesRepository {
-    create(name: ICitiesDTO): void
-    list(): Cidade []
-    findByName(name: string): Cidade
-    findById(id: string): Promise<Cidade | null>
+    create(name: ICitiesDTO): Promise<void>
+    list(): Promise<City[]>
+    findByName(name: string): Promise<City>
+    findById(id: string): Promise<City| null>
 }
 
 export { ICitiesDTO, ICitiesRepository }

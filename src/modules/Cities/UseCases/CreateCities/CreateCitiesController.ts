@@ -1,16 +1,15 @@
 import { Request, Response } from "express"
+import { container} from "tsyringe"
 import { CreateCitiesUseCase } from "./CreateCitiesUseCase";
 
 class CreateCitiesController{
-    
-    constructor(
-        private createCitiesUseCase: CreateCitiesUseCase
-    ){}
 
-    handle(request: Request, response: Response): Response{
-        const { name } = request.body
+    async handle(request: Request, response: Response): Promise<Response>{
+        const { name, state } = request.body
 
-        this.createCitiesUseCase.execute({name})
+        const createCitiesUseCase = container.resolve(CreateCitiesUseCase)
+
+        await createCitiesUseCase.execute({name, state})
 
         return response.status(201).send()
     }
