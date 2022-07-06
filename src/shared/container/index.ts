@@ -8,6 +8,8 @@ import { IDeliverymansRepository } from "../../modules/Accounts/repositories/IDe
 import { DeliverymansRepository } from "../../modules/Accounts/repositories/implementations/DeliverymansRepository"
 import { IPaymentsRepository } from "../../modules/Payments/repositories/IPaymentsRepository"
 import { PaymentsRepository } from "../../modules/Payments/repositories/implementations/PaymentsRepository"
+import { IRequestsRepository } from "../../modules/RequestDelivery/repositories/IRequestsRepository"
+import { RequestsRepository } from "../../modules/RequestDelivery/repositories/implementations/RequestsRepository"
 
 container.registerSingleton<ICitiesRepository>(
     "CitiesRepository",
@@ -27,4 +29,9 @@ container.registerSingleton<IDeliverymansRepository>(
 container.registerSingleton<IPaymentsRepository>(
     "PaymentsRepository",
     PaymentsRepository
+)
+
+container.registerSingleton<IRequestsRepository>(
+    "RequestsRepository",
+    RequestsRepository
 )
