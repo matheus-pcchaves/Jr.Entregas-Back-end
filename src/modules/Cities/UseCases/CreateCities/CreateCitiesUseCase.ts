@@ -5,7 +5,6 @@ import { ICitiesDTO, ICitiesRepository } from "../../repositories/ICitiesReposit
 
 @injectable()
 class CreateCitiesUseCase {
-
     constructor(
         @inject("CitiesRepository")
         private citiesRepository: ICitiesRepository

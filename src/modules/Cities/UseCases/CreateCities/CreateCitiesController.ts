@@ -5,6 +5,7 @@ import { CreateCitiesUseCase } from "./CreateCitiesUseCase";
 class CreateCitiesController{
 
     async handle(request: Request, response: Response): Promise<Response>{
+        
         const { name, state } = request.body
 
         const createCitiesUseCase = container.resolve(CreateCitiesUseCase)

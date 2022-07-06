@@ -12,4 +12,5 @@ interface ICitiesRepository {
     findById(id: string): Promise<City| null>
 }
 
+
 export { ICitiesDTO, ICitiesRepository }
