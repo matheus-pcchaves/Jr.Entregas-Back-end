@@ -1,26 +1,26 @@
 import { Request, Response } from "express"
+import { container } from "tsyringe";
 import { CreateDeliverymansUseCase } from "./CreateDeliverymansUseCase";
 
 class CreateDeliverymansController {
-    constructor(
-        private createDeliverymansUseCase: CreateDeliverymansUseCase
-    ){}
 
-    handle(request: Request, response: Response): Response{
+    async handle(request: Request, response: Response): Promise<Response>{
         const { 
             name,
             email, 
             password, 
-            cidade_id, 
+            city_id, 
             driver_license, 
             vehicle_document
         } = request.body
 
-        this.createDeliverymansUseCase.execute({
+        const createDeliverymansUseCase = container.resolve(CreateDeliverymansUseCase)
+
+        await createDeliverymansUseCase.execute({
             name,
             email, 
             password, 
-            cidade_id, 
+            city_id, 
             driver_license, 
             vehicle_document
         })

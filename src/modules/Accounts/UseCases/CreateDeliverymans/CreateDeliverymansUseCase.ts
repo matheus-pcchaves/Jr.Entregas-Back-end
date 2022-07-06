@@ -1,26 +1,36 @@
 import { AppError } from "../../../../errors/AppError";
-import { IDeliverymansDTO, IDeliverymansRepository } from "../../repositories/IDeliverymansRepository";
+import { IDeliverymansRepository } from "../../repositories/IDeliverymansRepository";
+import { IDeliverymansDTO } from "../../dtos/IDeliverymansDTO";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 class CreateDeliverymansUseCase {
     constructor(
+        @inject("DeliverymansRepository")
         private deliverymansRepository: IDeliverymansRepository
     ){}
 
-    execute({name, email, password, cidade_id, driver_license, vehicle_license}: IDeliverymansDTO): void{
+    async execute({name, email, password, city_id, driver_license, vehicle_document}: IDeliverymansDTO): Promise<void>{
         
-        const userAlreadyExists = this.deliverymansRepository.findByEmail(email)
+        const userAlreadyExists = await this.deliverymansRepository.findByEmail(email)
 
         if(userAlreadyExists){
-            throw new AppError('Email já cadastrado')
+            throw new AppError('User already exists')
         }
 
-        this.deliverymansRepository.create({
+        const driverLicenseAlreadyRegistered = await this.deliverymansRepository.findByDriverLicense(driver_license)
+
+        if(driverLicenseAlreadyRegistered){
+            throw new AppError('Driver license already registered')
+        }
+
+        await this.deliverymansRepository.create({
             name,
             email,
             password,
-            cidade_id,
+            city_id,
             driver_license,
-            vehicle_license
+            vehicle_document
         })
     }
 }

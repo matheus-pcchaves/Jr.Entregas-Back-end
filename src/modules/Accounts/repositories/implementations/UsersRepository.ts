@@ -1,6 +1,7 @@
 import { getRepository, Repository } from "typeorm"
 import { User } from "../../entities/User"
-import { IUsersDTO, IUsersRepository } from "../IUsersRepository" 
+import { IUsersRepository } from "../IUsersRepository" 
+import { IUsersDTO } from "@modules/Accounts/dtos/IUsersDTO"
 
 class UsersRepository implements IUsersRepository{
 
@@ -38,6 +39,12 @@ class UsersRepository implements IUsersRepository{
         const user = await this.repository.findOne({email})
 
         return user
+    }
+
+    async findByDocument(cpfcnpj: string): Promise<User> {
+        const document = await this.repository.findOne({cpfcnpj})
+
+        return document
     }
 }
 

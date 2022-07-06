@@ -1,53 +1,51 @@
+import { getRepository, Repository } from "typeorm"
 import { Deliveryman } from "../../entities/Deliveryman"
-import { IDeliverymansDTO, IDeliverymansRepository } from "../IDeliverymansRepository" 
+import { IDeliverymansRepository } from "../IDeliverymansRepository" 
+import { IDeliverymansDTO } from "../../dtos/IDeliverymansDTO"
 
 class DeliverymansRepository implements IDeliverymansRepository{
 
-    private deliverymans: Deliveryman []
-
-    public static INSTANCE: DeliverymansRepository
+    private repository: Repository<Deliveryman>
 
     public constructor(){
-        this.deliverymans = []
+        this.repository = getRepository(Deliveryman)
     }
 
-    public static getInstance(): DeliverymansRepository{
-        if(!DeliverymansRepository.INSTANCE){
-            DeliverymansRepository.INSTANCE = new DeliverymansRepository()
-        }
-
-        return DeliverymansRepository.INSTANCE
-    }
-
-    create({name, email, password, cidade_id, driver_license, vehicle_license}: IDeliverymansDTO): void{
-        const deliveryman = new Deliveryman()
-
-        Object.assign(deliveryman, {
+    async create({name, email, password, city_id, driver_license, vehicle_document}: IDeliverymansDTO): Promise<void>{
+        const deliveryman = await this.repository.create({
             name,
             email,
             password,
-            cidade_id,
+            city_id,
             driver_license,
-            vehicle_license
+            vehicle_document
         })
 
-        this.deliverymans.push(deliveryman)
+        await this.repository.save(deliveryman)
     }
 
-    list(): Deliveryman[] {
-        return this.deliverymans
+    async list(): Promise<Deliveryman[]> {
+        const deliverymans = await this.repository.find()
+
+        return deliverymans
     }
 
-    findByName(name: string): Deliveryman {
-        const deliveryman = this.deliverymans.find((deliveryman) => deliveryman.name === name)
+    async findByName(name: string): Promise<Deliveryman> {
+        const deliverymanName = this.repository.findOne({name})
 
-        return deliveryman
+        return deliverymanName
     }
 
-    findByEmail(email: string): Deliveryman {
-        const deliveryman = this.deliverymans.find((deliveryman) => deliveryman.email === email)
+    async findByEmail(email: string): Promise<Deliveryman> {
+        const deliverymanEmail = this.repository.findOne({email})
 
-        return deliveryman
+        return deliverymanEmail
+    }
+
+    async findByDriverLicense(driver_license: string): Promise<Deliveryman> {
+        const deliverymanDriverLicense = this.repository.findOne({driver_license})
+
+        return deliverymanDriverLicense
     }
 }
 
