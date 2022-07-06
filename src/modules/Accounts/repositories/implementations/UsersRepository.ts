@@ -1,7 +1,7 @@
 import { getRepository, Repository } from "typeorm"
 import { User } from "../../entities/User"
 import { IUsersRepository } from "../IUsersRepository" 
-import { IUsersDTO } from "@modules/Accounts/dtos/IUsersDTO"
+import { IUsersDTO } from "../../dtos/IUsersDTO"
 
 class UsersRepository implements IUsersRepository{
 
