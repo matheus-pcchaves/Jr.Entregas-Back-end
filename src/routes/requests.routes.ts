@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { ensureAuthenticated } from "middlewares/EnsureAuthenticated";
-import { CreateRequestsController } from "../modules/RequestDelivery/Request/CreateRequestController";
+import { ensureAuthenticated } from "../middlewares/EnsureAuthenticated";
+import { CreateRequestsController } from "../modules/RequestDelivery/Request/CreateRequests/CreateRequestController";
 
 const requestsRoutes = Router()
 
