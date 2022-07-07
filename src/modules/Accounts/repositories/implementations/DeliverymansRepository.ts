@@ -47,6 +47,12 @@ class DeliverymansRepository implements IDeliverymansRepository{
 
         return deliverymanDriverLicense
     }
+
+    async findByCityId(city_id: string): Promise<Deliveryman> {
+        const deliverymanCityId = this.repository.findOne({city_id})
+
+        return deliverymanCityId
+    }
 }
 
 export { DeliverymansRepository }
