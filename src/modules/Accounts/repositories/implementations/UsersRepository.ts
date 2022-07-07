@@ -4,7 +4,6 @@ import { IUsersRepository } from "../IUsersRepository"
 import { IUsersDTO } from "../../dtos/IUsersDTO"
 
 class UsersRepository implements IUsersRepository{
-
     private repository: Repository<User>
 
     public constructor(){
