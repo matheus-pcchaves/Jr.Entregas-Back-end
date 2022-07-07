@@ -39,7 +39,7 @@ class AuthenticateDeliverymansUseCase {
             throw new AppError('Email/password incorrect')
         }
 
-        const token = sign({}, "afbc583b1997bf40546fcf9e32a6184d", {
+        const token = sign({city: user.city_id}, "afbc583b1997bf40546fcf9e32a6184d", {
             subject: user.id,
             expiresIn: "1d"
         })

@@ -1,15 +1,21 @@
-import { IRequestsRepository } from "@modules/RequestDelivery/repositories/IRequestsRepository";
-import { inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
+import { IRequestsRepository } from "../../repositories/IRequestsRepository";
+import { Requests } from "../../entities/Requests";
 
-class ListRequestsByCity {
+@injectable()
+class ListRequestsByCityUseCase {
 
     constructor(
+        @inject("RequestsRepository")
         private requestsRepository: IRequestsRepository
     ){}
 
-    async execute(city_id: string){
-        const cityMatch = await this.requestsRepository.find
+    async execute({city_id}): Promise<Requests[]>{
+
+        const requests = await this.requestsRepository.findByCityId(city_id)
+
+        return requests
     }
 }
 
-export { ListRequestsByCity }
+export { ListRequestsByCityUseCase }

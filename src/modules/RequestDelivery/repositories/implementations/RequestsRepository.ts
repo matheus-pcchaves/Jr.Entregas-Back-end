@@ -28,6 +28,17 @@ class RequestsRepository implements IRequestsRepository {
 
         return requestId
     }
+
+    async findByCityId(city_id: string): Promise<Requests[]> {
+        const requestsCity = await this.repository.find({
+            where: {
+                city_id
+            },
+            relations: ["city"]
+        })
+
+        return requestsCity
+    }
 }
 
 export { RequestsRepository }
