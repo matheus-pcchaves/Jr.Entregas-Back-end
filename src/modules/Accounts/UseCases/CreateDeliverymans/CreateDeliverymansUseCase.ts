@@ -1,7 +1,9 @@
+import { hash } from "bcryptjs"
+import { inject, injectable } from "tsyringe";
+
 import { AppError } from "../../../../errors/AppError";
 import { IDeliverymansRepository } from "../../repositories/IDeliverymansRepository";
 import { IDeliverymansDTO } from "../../dtos/IDeliverymansDTO";
-import { inject, injectable } from "tsyringe";
 
 @injectable()
 class CreateDeliverymansUseCase {
@@ -24,10 +26,12 @@ class CreateDeliverymansUseCase {
             throw new AppError('Driver license already registered')
         }
 
+        const passwordHash = await hash(password, 8)
+
         await this.deliverymansRepository.create({
             name,
             email,
-            password,
+            password: passwordHash,
             city_id,
             driver_license,
             vehicle_document

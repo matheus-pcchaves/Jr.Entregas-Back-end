@@ -1,4 +1,6 @@
+import { hash } from "bcryptjs"
 import { inject, injectable } from "tsyringe";
+
 import { AppError } from "../../../../errors/AppError";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { IUsersDTO } from "@modules/Accounts/dtos/IUsersDTO";
@@ -24,10 +26,12 @@ class CreateUsersUseCase {
             throw new AppError('incorrect data');
         }
 
+        const passwordHash = await hash(password, 8)
+
         await this.usersRepository.create({
             name,
             email,
-            password,
+            password: passwordHash,
             cpfcnpj
         })
     }
