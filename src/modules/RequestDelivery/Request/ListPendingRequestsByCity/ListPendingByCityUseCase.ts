@@ -3,7 +3,7 @@ import { IRequestsRepository } from "../../repositories/IRequestsRepository";
 import { Requests } from "../../entities/Requests";
 
 @injectable()
-class ListRequestsByCityUseCase {
+class ListPendingByCityUseCase {
 
     constructor(
         @inject("RequestsRepository")
@@ -12,10 +12,10 @@ class ListRequestsByCityUseCase {
 
     async execute({city_id}): Promise<Requests[]>{
 
-        const requests = await this.requestsRepository.findByCityId(city_id)
+        const requests = await this.requestsRepository.listPendingByCityId(city_id)
 
         return requests
     }
 }
 
-export { ListRequestsByCityUseCase }
+export { ListPendingByCityUseCase }

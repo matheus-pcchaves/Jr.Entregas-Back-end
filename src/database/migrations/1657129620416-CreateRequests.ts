@@ -29,6 +29,11 @@ export class CreateRequests1657129620416 implements MigrationInterface {
                         type: "uuid"
                     },
                     {
+                        name: "isPending",
+                        type: "boolean",
+                        default: true
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default: "now()"

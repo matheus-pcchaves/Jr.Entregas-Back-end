@@ -11,7 +11,7 @@ class RequestsRepository implements IRequestsRepository {
         this.repository = getRepository(Requests)
     } 
 
-    async create({item_description, address, city_id, payment_id}: IRequestsDTO): Promise<void> {
+    async create({item_description, address, city_id, payment_id}: IRequestsDTO): Promise<Requests> {
 
         const request = this.repository.create({
             item_description,
@@ -21,6 +21,8 @@ class RequestsRepository implements IRequestsRepository {
         })
 
         await this.repository.save(request)
+
+        return request
     }
 
     async findById(id: string): Promise<Requests> {
@@ -28,16 +30,16 @@ class RequestsRepository implements IRequestsRepository {
 
         return requestId
     }
+    
+    async listPendingByCityId(city_id: string): Promise<Requests[]> {
+        const requestsQuery = await this.repository
+            .createQueryBuilder("c")
+            .where("isPending = :isPending", { isPending: true })
+            .andWhere("city_id = :city_id", {city_id})
 
-    async findByCityId(city_id: string): Promise<Requests[]> {
-        const requestsCity = await this.repository.find({
-            where: {
-                city_id
-            },
-            relations: ["city"]
-        })
+        const requests = await requestsQuery.getMany()
 
-        return requestsCity
+        return requests
     }
 }
 

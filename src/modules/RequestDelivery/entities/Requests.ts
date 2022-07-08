@@ -29,12 +29,16 @@ class Requests {
     @ManyToOne(() => Payment)
     payment: Payment
 
+    @Column()
+    isPending?: boolean
+
     @CreateDateColumn()
     created_at: Date
 
     constructor(){
         if(!this.id){
             this.id = uuidv4() 
+            this.isPending = true
         }
     }
 }
