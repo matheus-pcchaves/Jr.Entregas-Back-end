@@ -2,13 +2,13 @@ import { Request, Response, NextFunction } from "express";
 import { AppError } from "../errors/AppError";
 import { verify } from "jsonwebtoken";
 
-import { UsersRepository } from "../modules/Accounts/repositories/implementations/UsersRepository";
+import { DeliverymansRepository } from "../modules/Accounts/repositories/implementations/DeliverymansRepository";
 
 interface IPayLoad {
     sub: string
 }
 
-export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
+export async function ensureDeliverymansAuthenticated(request: Request, response: Response, next: NextFunction) {
     const authHeader = request.headers.authorization
 
     if(!authHeader){
@@ -20,9 +20,9 @@ export async function ensureAuthenticated(request: Request, response: Response, 
     try {
         const { sub: user_id } = verify(token, "afbc583b1997bf40546fcf9e32a6184d") as IPayLoad
 
-        const usersRepository = new UsersRepository()
+        const deliverymansRepository = new DeliverymansRepository()
 
-        const user = await usersRepository.findById(user_id)
+        const user = await deliverymansRepository.findById(user_id)
 
         if(!user){
             throw new AppError('User does not exists')
@@ -32,6 +32,4 @@ export async function ensureAuthenticated(request: Request, response: Response, 
     } catch (error) {
         throw new AppError('Invalid token')
     }
-
-
 }

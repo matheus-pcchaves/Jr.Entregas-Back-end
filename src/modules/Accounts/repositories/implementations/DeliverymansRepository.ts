@@ -48,10 +48,16 @@ class DeliverymansRepository implements IDeliverymansRepository{
         return deliverymanDriverLicense
     }
 
-    async findByCityId(city_id: string): Promise<Deliveryman> {
-        const deliverymanCityId = this.repository.findOne({city_id})
+    async findByCityId(city_id: string): Promise<Deliveryman[]> {
+        const deliverymanCityId = await this.repository.find({city_id})
 
         return deliverymanCityId
+    }
+
+    async findById(id: string): Promise<Deliveryman> {
+        const deliveryman = await this.repository.findOne(id)
+
+        return deliveryman
     }
 }
 

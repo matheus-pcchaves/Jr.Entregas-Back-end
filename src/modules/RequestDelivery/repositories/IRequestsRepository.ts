@@ -4,7 +4,7 @@ import { Requests } from "../entities/Requests";
 class IRequestsRepository {
     create(data: IRequestsDTO): Promise<Requests>
     findById(id: string): Promise<Requests | null>
-    listByCityId(city_id: string): Promise<Requests[]>
+    findByCityId(city_id: string): Promise<Requests[]>
 }
 
 export { IRequestsRepository }

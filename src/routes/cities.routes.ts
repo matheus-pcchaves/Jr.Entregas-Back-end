@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { CreateCitiesController } from "../modules/Cities/UseCases/CreateCities/CreateCitiesController"
-import { ListCitiesController } from "../modules/Cities/UseCases/ListCities/ListCitiesController"
+import { CreateCitiesController } from "../modules/Cities/useCases/CreateCities/CreateCitiesController"
+import { ListCitiesController } from "../modules/Cities/useCases/ListCities/ListCitiesController"
 
 const citiesRoutes = Router()
 

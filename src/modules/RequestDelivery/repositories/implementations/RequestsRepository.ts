@@ -31,7 +31,7 @@ class RequestsRepository implements IRequestsRepository {
         return requestId
     }
     
-    async listByCityId(cityId: string): Promise<Requests[]> {
+    async findByCityId(cityId: string): Promise<Requests[]> {
         const requestsQuery = await this.repository.find({
             where: {
                 city_id: cityId

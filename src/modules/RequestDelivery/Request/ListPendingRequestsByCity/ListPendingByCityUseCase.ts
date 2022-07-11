@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 import { IRequestsRepository } from "../../repositories/IRequestsRepository";
 import { Requests } from "../../entities/Requests";
 
@@ -16,9 +17,13 @@ class ListPendingByCityUseCase {
 
     async execute({city_id}: IRequest): Promise<Requests[]>{
 
-        const requests = await this.requestsRepository.listByCityId(city_id)
+        const requestsCities = await this.requestsRepository.findByCityId(city_id)
 
-        return requests
+        if(!requestsCities){
+            throw new AppError('Incorrect City Id')
+        }
+
+        return requestsCities
     }
 }
 
