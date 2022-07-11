@@ -11,7 +11,9 @@ class ListPendingByCityController {
 
         const listPendingByCity = container.resolve(ListPendingByCityUseCase)
 
-        const requests = await listPendingByCity.execute({city_id})
+        const requests = await listPendingByCity.execute({ 
+            city_id: city_id as string 
+        })
 
         return response.json(requests)
     }

@@ -9,8 +9,7 @@ const requestsRoutes = Router()
 const createRequestsController = new CreateRequestsController()
 const listPendingByCityController = new ListPendingByCityController()
 
+requestsRoutes.post("/create", ensureAuthenticated, createRequestsController.handle)
 requestsRoutes.get("/list", listPendingByCityController.handle)
-requestsRoutes.use(ensureAuthenticated)
-requestsRoutes.post("/create", createRequestsController.handle)
 
 export { requestsRoutes }

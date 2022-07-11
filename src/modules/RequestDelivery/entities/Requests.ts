@@ -30,7 +30,7 @@ class Requests {
     payment: Payment
 
     @Column()
-    isPending?: boolean
+    isPending: boolean
 
     @CreateDateColumn()
     created_at: Date
