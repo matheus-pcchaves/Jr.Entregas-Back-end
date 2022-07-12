@@ -12,8 +12,8 @@ import { IPaymentsRepository } from "../../modules/Payments/repositories/IPaymen
 import { PaymentsRepository } from "../../modules/Payments/repositories/implementations/PaymentsRepository"
 import { IRequestsRepository } from "../../modules/RequestsDeliveries/repositories/IRequestsRepository"
 import { RequestsRepository } from "../../modules/RequestsDeliveries/repositories/implementations/RequestsRepository"
-import { IDeliveriesRepository } from "@modules/RequestsDeliveries/repositories/IDeliveriesRepository"
-import { DeliveriesRepository } from "@modules/RequestsDeliveries/repositories/implementations/DeliveriesRepository"
+import { IDeliveriesRepository } from "../../modules/RequestsDeliveries/repositories/IDeliveriesRepository"
+import { DeliveriesRepository } from "../../modules/RequestsDeliveries/repositories/implementations/DeliveriesRepository"
 
 container.registerSingleton<ICitiesRepository>(
     "CitiesRepository",

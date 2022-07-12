@@ -1,6 +1,6 @@
 import { getRepository, Repository } from "typeorm";
-import { IDeliveriesDTO } from "@modules/RequestsDeliveries/dtos/IDeliveriesDTO";
-import { Delivery } from "@modules/RequestsDeliveries/entities/Delivery";
+import { IDeliveriesDTO } from "../../dtos/IDeliveriesDTO";
+import { Delivery } from "../../entities/Delivery";
 import { IDeliveriesRepository } from "../IDeliveriesRepository";
 
 class DeliveriesRepository implements IDeliveriesRepository {

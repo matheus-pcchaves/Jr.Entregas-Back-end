@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid"
-import { Deliveryman } from "@modules/Accounts/entities/Deliveryman";
-import { City } from "@modules/Cities/entities/City";
+import { Deliveryman } from "../../Accounts/entities/Deliveryman";
+import { City } from "../../Cities/entities/City";
 import { Requests } from "./Requests";
 
 @Entity("deliveries")
