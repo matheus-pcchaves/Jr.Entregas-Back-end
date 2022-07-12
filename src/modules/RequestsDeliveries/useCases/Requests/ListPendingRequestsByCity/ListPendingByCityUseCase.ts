@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { AppError } from "../../../../errors/AppError";
-import { IRequestsRepository } from "../../repositories/IRequestsRepository";
-import { Requests } from "../../entities/Requests";
+import { AppError } from "../../../../../errors/AppError";
+import { IRequestsRepository } from "../../../repositories/IRequestsRepository";
+import { Requests } from "../../../entities/Requests";
 
 interface IRequest{
     city_id: string
@@ -17,7 +17,7 @@ class ListPendingByCityUseCase {
 
     async execute({city_id}: IRequest): Promise<Requests[]>{
 
-        const requestsCities = await this.requestsRepository.findByCityId(city_id)
+        const requestsCities = await this.requestsRepository.listByCityId(city_id)
 
         if(!requestsCities){
             throw new AppError('Incorrect City Id')

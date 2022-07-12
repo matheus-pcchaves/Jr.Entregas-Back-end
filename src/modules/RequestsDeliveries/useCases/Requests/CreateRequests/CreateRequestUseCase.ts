@@ -1,7 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { IRequestsDTO } from "../../dtos/IRequestsDTO";
-import { IRequestsRepository } from "../../repositories/IRequestsRepository";
-import { Requests } from "@modules/RequestDelivery/entities/Requests";
+import { IRequestsDTO } from "../../../dtos/IRequestsDTO";
+import { IRequestsRepository } from "../../../repositories/IRequestsRepository";
+import { Requests } from "../../../entities/Requests";
 
 @injectable()
 class CreateRequestUseCase {
