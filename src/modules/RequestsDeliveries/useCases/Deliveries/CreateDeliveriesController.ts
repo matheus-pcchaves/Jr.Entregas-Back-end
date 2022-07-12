@@ -13,8 +13,8 @@ class CreateDeliveriesController {
         const delivery = await createDeliveryUseCase.execute({
             request_id,
             city_id,
-            expected_finish_date,
-            deliveryman_id: id
+            deliveryman_id: id,
+            expected_finish_date
         })
 
         return response.status(201).json(delivery)
