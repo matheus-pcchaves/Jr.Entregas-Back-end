@@ -1,5 +1,7 @@
 import { container} from "tsyringe"
 
+import "../../shared/container/providers"
+
 import { ICitiesRepository } from "../../modules/Cities/repositories/ICitiesRepository"
 import { CitiesRepository } from "../../modules/Cities/repositories/implementations/CitiesRepository"
 import { UsersRepository } from "../../modules/Accounts/repositories/implementations/UsersRepository"
@@ -8,8 +10,10 @@ import { IDeliverymansRepository } from "../../modules/Accounts/repositories/IDe
 import { DeliverymansRepository } from "../../modules/Accounts/repositories/implementations/DeliverymansRepository"
 import { IPaymentsRepository } from "../../modules/Payments/repositories/IPaymentsRepository"
 import { PaymentsRepository } from "../../modules/Payments/repositories/implementations/PaymentsRepository"
-import { IRequestsRepository } from "../../modules/RequestDelivery/repositories/IRequestsRepository"
-import { RequestsRepository } from "../../modules/RequestDelivery/repositories/implementations/RequestsRepository"
+import { IRequestsRepository } from "../../modules/RequestsDeliveries/repositories/IRequestsRepository"
+import { RequestsRepository } from "../../modules/RequestsDeliveries/repositories/implementations/RequestsRepository"
+import { IDeliveriesRepository } from "@modules/RequestsDeliveries/repositories/IDeliveriesRepository"
+import { DeliveriesRepository } from "@modules/RequestsDeliveries/repositories/implementations/DeliveriesRepository"
 
 container.registerSingleton<ICitiesRepository>(
     "CitiesRepository",
@@ -34,4 +38,9 @@ container.registerSingleton<IPaymentsRepository>(
 container.registerSingleton<IRequestsRepository>(
     "RequestsRepository",
     RequestsRepository
+)
+
+container.registerSingleton<IDeliveriesRepository>(
+    "DeliveriesRepository",
+    DeliveriesRepository
 )

@@ -2,8 +2,8 @@ import { Router } from "express";
 
 import { ensureUsersAuthenticated } from "../middlewares/EnsureUsersAuthenticated";
 import { ensureDeliverymansAuthenticated } from "../middlewares/EnsureDeliverymansAuthenticated"
-import { CreateRequestsController } from "../modules/RequestDelivery/Request/CreateRequests/CreateRequestController";
-import { ListPendingByCityController } from "../modules/RequestDelivery/Request/ListPendingRequestsByCity/ListPendingByCityController"
+import { CreateRequestsController } from "../modules/RequestsDeliveries/Requests/CreateRequests/CreateRequestController";
+import { ListPendingByCityController } from "../modules/RequestsDeliveries/Requests/ListPendingRequestsByCity/ListPendingByCityController"
 
 const requestsRoutes = Router()
 
