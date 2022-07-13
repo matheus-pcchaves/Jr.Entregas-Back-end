@@ -33,6 +33,7 @@ export async function ensureUsersAuthenticated(request: Request, response: Respo
         }
 
         next()
+        
     } catch (error) {
         throw new AppError('Invalid token')
     }

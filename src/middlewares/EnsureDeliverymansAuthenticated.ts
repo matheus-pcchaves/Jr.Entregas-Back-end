@@ -33,6 +33,7 @@ export async function ensureDeliverymansAuthenticated(request: Request, response
         }
 
         next()
+        
     } catch (error) {
         throw new AppError('Invalid token')
     }
