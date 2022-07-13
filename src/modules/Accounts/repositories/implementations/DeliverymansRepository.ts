@@ -31,19 +31,19 @@ class DeliverymansRepository implements IDeliverymansRepository{
     }
 
     async findByName(name: string): Promise<Deliveryman> {
-        const deliverymanName = this.repository.findOne({name})
+        const deliverymanName = await this.repository.findOne({name})
 
         return deliverymanName
     }
 
     async findByEmail(email: string): Promise<Deliveryman> {
-        const deliverymanEmail = this.repository.findOne({email})
+        const deliverymanEmail = await this.repository.findOne({email})
 
         return deliverymanEmail
     }
 
     async findByDriverLicense(driver_license: string): Promise<Deliveryman> {
-        const deliverymanDriverLicense = this.repository.findOne({driver_license})
+        const deliverymanDriverLicense = await this.repository.findOne({driver_license})
 
         return deliverymanDriverLicense
     }
@@ -55,7 +55,7 @@ class DeliverymansRepository implements IDeliverymansRepository{
     }
 
     async findById(id: string): Promise<Deliveryman> {
-        const deliveryman = await this.repository.findOne(id)
+        const deliveryman = await this.repository.findOne({id})
 
         return deliveryman
     }

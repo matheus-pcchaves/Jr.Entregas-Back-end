@@ -28,6 +28,10 @@ export async function ensureDeliverymansAuthenticated(request: Request, response
             throw new AppError('User does not exists')
         }
 
+        request.user = {
+            id: deliveryman_id
+        }
+
         next()
     } catch (error) {
         throw new AppError('Invalid token')
