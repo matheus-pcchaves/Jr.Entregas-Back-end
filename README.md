@@ -4,7 +4,7 @@
 Back-end do app da empresa Jr.Entregas,
 uma empresa de gerenciamento de entregas por aplicativo. 
 
-## Tecnologias utilizadas:
+## Tecnologias principais utilizadas:
 Node.JS, Typescript, Postgres, Typeorm, JWT, Docker, Jest. 
 
 
