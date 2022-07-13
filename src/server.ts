@@ -5,10 +5,11 @@ import "express-async-errors"
 import { AppError } from "./errors/AppError";
 import { router } from "./routes"
 
-import "./database"
+import createConnection from "./database"
 
 import "./shared/container"
 
+createConnection()
 const app = express()
 
 app.use(express.json())
