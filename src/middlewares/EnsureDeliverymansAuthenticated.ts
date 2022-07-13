@@ -18,11 +18,11 @@ export async function ensureDeliverymansAuthenticated(request: Request, response
     const [, token] = authHeader.split(" ")
 
     try {
-        const { sub: user_id } = verify(token, "afbc583b1997bf40546fcf9e32a6184d") as IPayLoad
+        const { sub: deliveryman_id } = verify(token, "afbc583b1997bf40546fcf9e32a6184d") as IPayLoad
 
         const deliverymansRepository = new DeliverymansRepository()
 
-        const user = await deliverymansRepository.findById(user_id)
+        const user = await deliverymansRepository.findById(deliveryman_id)
 
         if(!user){
             throw new AppError('User does not exists')
