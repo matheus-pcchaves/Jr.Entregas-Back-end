@@ -13,7 +13,6 @@ class CreateDeliverymansUseCase {
     ){}
 
     async execute({name, email, password, city_id, driver_license, vehicle_document}: IDeliverymansDTO): Promise<void>{
-        
         const userAlreadyExists = await this.deliverymansRepository.findByEmail(email)
 
         if(userAlreadyExists){

@@ -7,7 +7,6 @@ import { IUsersDTO } from "@modules/Accounts/dtos/IUsersDTO";
 
 @injectable()
 class CreateUsersUseCase {
-
     constructor(
         @inject("UsersRepository")
         private usersRepository: IUsersRepository
