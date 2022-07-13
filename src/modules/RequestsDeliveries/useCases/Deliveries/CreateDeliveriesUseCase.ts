@@ -5,12 +5,9 @@ import { IDateProvider } from "../../../../shared/container/providers/DateProvid
 
 import { Delivery } from "../../entities/Delivery"
 import { IDeliveriesRepository } from "../../repositories/IDeliveriesRepository";
-import { IRequestsRepository } from "../../repositories/IRequestsRepository";
-import { IDeliverymansRepository } from "../../../Accounts/repositories/IDeliverymansRepository";
 
 interface IRequest {
     request_id: string;
-    city_id: string;
     deliveryman_id: string;
     expected_finish_date: Date
 }
@@ -22,17 +19,11 @@ class CreateDeliveriesUseCase {
         @inject("DeliveriesRepository")
         private deliveriesRepository: IDeliveriesRepository,
 
-        @inject("RequestsRepository")
-        private requestsRepository: IRequestsRepository,
-
-        @inject("DeliverymansRepository")
-        private deliverymansRepository: IDeliverymansRepository,
-
         @inject("DayjsDateProvider")
         private dateProvider: IDateProvider
     ){}
 
-    async execute({ request_id, city_id, deliveryman_id, expected_finish_date }: IRequest): Promise<Delivery>{
+    async execute({ request_id, deliveryman_id, expected_finish_date }: IRequest): Promise<Delivery>{
         const minimumHours = 24
 
         const requestInProgress = await this.deliveriesRepository.findRequestInProgress(request_id)
@@ -45,18 +36,6 @@ class CreateDeliveriesUseCase {
 
         if(deliverymanInProgress){
             throw new AppError('Incorrect register')
-        }
-
-        const requestsCity = await this.requestsRepository.findByCity(city_id)
-
-        if(!requestsCity){
-            throw new AppError('Incorrect city')
-        }
-
-        const deliverymansCity = await this.deliverymansRepository.findByCity(city_id)
-
-        if(!deliverymansCity){
-            throw new AppError('Cannot deliver outside your city')
         }
 
         const dateNow = this.dateProvider.dateNow()
@@ -72,7 +51,6 @@ class CreateDeliveriesUseCase {
 
         const newDelivery = await this.deliveriesRepository.create({
             request_id,
-            city_id,
             deliveryman_id,
             expected_finish_date
         })

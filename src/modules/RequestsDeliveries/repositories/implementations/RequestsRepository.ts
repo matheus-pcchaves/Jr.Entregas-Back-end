@@ -35,7 +35,8 @@ class RequestsRepository implements IRequestsRepository {
         const requestsQuery = await this.repository.find({
             where: {
                 city_id: cityId
-            }
+            },
+            relations: ["city"]
         })
 
         return requestsQuery

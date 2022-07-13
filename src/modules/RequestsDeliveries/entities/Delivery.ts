@@ -17,13 +17,6 @@ class Delivery {
     request: Requests;
 
     @Column()
-    city_id: string;
-
-    @ManyToOne(() => City)
-    @JoinColumn({name: "city_id"})
-    city: City
-
-    @Column()
     deliveryman_id: string;
 
     @ManyToOne(() => Deliveryman)

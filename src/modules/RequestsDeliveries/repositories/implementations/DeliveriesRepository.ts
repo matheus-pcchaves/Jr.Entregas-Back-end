@@ -23,11 +23,10 @@ class DeliveriesRepository implements IDeliveriesRepository {
         return deliverymanId
     }
 
-    async create({ request_id, city_id, deliveryman_id, expected_finish_date}: IDeliveriesDTO): Promise<Delivery> {
+    async create({ request_id, deliveryman_id, expected_finish_date}: IDeliveriesDTO): Promise<Delivery> {
 
         const delivery = await this.repository.create({
             request_id,
-            city_id,
             deliveryman_id,
             expected_finish_date
         })

@@ -13,10 +13,6 @@ export class CreateDeliveries1657571105258 implements MigrationInterface {
                         type: "uuid"
                     }, 
                     {
-                        name: "city_id",
-                        type: "uuid"
-                    },
-                    {
                         name: "deliveryman_id",
                         type: "uuid"
                     },
@@ -46,14 +42,6 @@ export class CreateDeliveries1657571105258 implements MigrationInterface {
                     }
                 ],
                 foreignKeys: [
-                    {
-                        name: "FKCity",
-                        referencedTableName: "cities",
-                        referencedColumnNames: ["id"],
-                        columnNames: ["city_id"],
-                        onDelete: "SET NULL",
-                        onUpdate: "SET NULL",
-                    },
                     {
                         name: "FKRequests",
                         referencedTableName: "requests",
