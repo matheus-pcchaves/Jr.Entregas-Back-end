@@ -1,3 +1,22 @@
+# API Jr.Entregas
+
+## Descrição:
+Back-end do app da empresa Jr.Entregas,
+uma empresa de gerenciamento de entregas por aplicativo. 
+
+## Tecnologias utilizadas:
+Node.JS, Typescript, Postgres, Typeorm, JWT, Docker, Jest. 
+
+
+# Como executar o projeto:
+Clone o repositório. <br>
+No terminal do diretório do projeto execute o comando "yarn".
+
+PARA CRIAR O BANCO DE DADOS <br>
+Com o docker instalado, execute o comando "docker-compose up", <br>
+e comando "yarn typeorm migration:run".
+
+
 # Cadastro de pedidos
 
 **RF**
