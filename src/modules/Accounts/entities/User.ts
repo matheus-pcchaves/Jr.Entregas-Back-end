@@ -19,6 +19,9 @@ class User {
     @Column()
     cpfcnpj: string;
 
+    @Column()
+    isAdmin: boolean;
+
     @CreateDateColumn()
     created_at: Date;
 
