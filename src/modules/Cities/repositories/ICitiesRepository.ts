@@ -9,7 +9,6 @@ interface ICitiesRepository {
     create(name: ICitiesDTO): Promise<void>
     list(): Promise<City[]>
     findByName(name: string): Promise<City>
-    findById(id: string): Promise<City| null>
 }
 
 

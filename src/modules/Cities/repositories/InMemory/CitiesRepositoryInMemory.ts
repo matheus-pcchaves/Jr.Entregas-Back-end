@@ -1,31 +1,31 @@
-import { Cidade } from "../../models/Cidade";
+import { City } from "../../entities/City";
 import { ICitiesDTO, ICitiesRepository } from "../ICitiesRepository";
 
 class CitiesRepositoryInMemory implements ICitiesRepository {
 
-    cidades: Cidade [] = []
+    cidades: City [] = []
 
-    create(name: ICitiesDTO): void {
-        const cidade = new Cidade()
+    async create({name, state}: ICitiesDTO): Promise<void> {
+        const cidade = new City()
 
-        Object.assign(cidade, ({name}))
+        Object.assign(cidade, ({name, state}))
 
         this.cidades.push(cidade)
     }
 
-    list(): Cidade[] {
+    async list(): Promise<City[]> {
         const cidades = this.cidades
 
         return cidades
     }
 
-    findByName(name: string): Cidade {
+    async findByName(name: string): Promise<City> {
         const cidade = this.cidades.find((cidade) => cidade.name === name)
         
         return cidade
     }
 
-    async findById(id: string): Promise<Cidade> {
+    async findById(id: string): Promise<City> {
         const cidade = await this.cidades.find((cidade) => cidade.id === id)
 
         return cidade

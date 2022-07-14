@@ -31,12 +31,6 @@ class CitiesRepository implements ICitiesRepository{
 
         return city
     }
-
-    async findById(id: string): Promise<City> {
-        const city = this.repository.findOne({id})
-
-        return city
-    }
 }
 
 
