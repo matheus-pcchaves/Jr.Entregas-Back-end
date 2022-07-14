@@ -27,12 +27,6 @@ class PaymentsRepository implements IPaymentsRepository{
         return payment
     }
 
-    async findById(id: string): Promise<Payment> {
-        const payment = await this.repository.findOne({id})
-
-        return payment
-    }
-
     async list(): Promise<Payment[]> {
         const all = await this.repository.find()
 
