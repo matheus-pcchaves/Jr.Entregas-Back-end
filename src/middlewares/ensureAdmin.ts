@@ -1,5 +1,5 @@
-import { AppError } from "@errors/AppError"
-import { UsersRepository } from "@modules/Accounts/repositories/implementations/UsersRepository"
+import { AppError } from "../errors/AppError"
+import { UsersRepository } from "../modules/Accounts/repositories/implementations/UsersRepository"
 import { NextFunction, Request, Response } from "express"
 
 export async function ensureAdmin(request: Request, response: Response, next: NextFunction) {
