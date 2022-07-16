@@ -10,14 +10,14 @@ class DeliveriesRepository implements IDeliveriesRepository {
     constructor(){
         this.repository = getRepository(Delivery)
     }
-
+    
     async findRequestInProgress(request_id: string): Promise<Delivery> {
         const requestId = await this.repository.findOne({request_id})
 
         return requestId
     }
 
-    async findDeliverymanInProgress(deliveryman_id: string): Promise<Delivery> {
+    async findDeliverymanAvailable(deliveryman_id: string): Promise<Delivery> {
         const deliverymanId = await this.repository.findOne({deliveryman_id})
 
         return deliverymanId

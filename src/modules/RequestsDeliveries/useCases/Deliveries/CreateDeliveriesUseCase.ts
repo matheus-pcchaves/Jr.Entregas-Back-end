@@ -5,6 +5,7 @@ import { IDateProvider } from "../../../../shared/container/providers/DateProvid
 
 import { Delivery } from "../../entities/Delivery"
 import { IDeliveriesRepository } from "../../repositories/IDeliveriesRepository";
+import { IRequestsRepository } from "../../repositories/IRequestsRepository";
 
 interface IRequest {
     request_id: string;
@@ -18,9 +19,10 @@ class CreateDeliveriesUseCase {
     constructor(
         @inject("DeliveriesRepository")
         private deliveriesRepository: IDeliveriesRepository,
-
         @inject("DayjsDateProvider")
-        private dateProvider: IDateProvider
+        private dateProvider: IDateProvider,
+        @inject("RequestsRepository")
+        private requestsRepository: IRequestsRepository
     ){}
 
     async execute({ request_id, deliveryman_id, expected_finish_date }: IRequest): Promise<Delivery>{
@@ -32,10 +34,10 @@ class CreateDeliveriesUseCase {
             throw new AppError('Request already in progress')
         }
 
-        const deliverymanInProgress = await this.deliveriesRepository.findDeliverymanInProgress(deliveryman_id)
+        const deliverymanAvailable = await this.deliveriesRepository.findDeliverymanAvailable(deliveryman_id)
 
-        if(deliverymanInProgress){
-            throw new AppError('Incorrect register')
+        if(deliverymanAvailable){
+            throw new AppError('Deliveryman unavailable')
         }
 
         const dateNow = this.dateProvider.dateNow()
@@ -54,6 +56,8 @@ class CreateDeliveriesUseCase {
             deliveryman_id,
             expected_finish_date
         })
+
+        await this.requestsRepository.updateStatus(request_id, false)
 
         return newDelivery
     }

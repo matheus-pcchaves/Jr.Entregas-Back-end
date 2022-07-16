@@ -10,7 +10,7 @@ class RequestsRepository implements IRequestsRepository {
     public constructor(){
         this.repository = getRepository(Requests)
     } 
-
+    
     async create({item_description, address, city_id, payment_id }: IRequestsDTO): Promise<Requests> {
 
         const request = this.repository.create({
@@ -23,12 +23,6 @@ class RequestsRepository implements IRequestsRepository {
         await this.repository.save(request)
 
         return request
-    }
-
-    async findById(id: string): Promise<Requests> {
-        const requestId = await this.repository.findOne({id})
-
-        return requestId
     }
     
     async listByCityId(cityId: string): Promise<Requests[]> {
@@ -46,6 +40,16 @@ class RequestsRepository implements IRequestsRepository {
         const requestCity = await this.repository.findOne({city_id})
 
         return requestCity
+    }
+
+    async updateStatus(id: string, isPending: boolean): Promise<void> {
+        await this.repository
+        .createQueryBuilder()
+        .update()
+        .set({isPending})
+        .where("id = :id")
+        .setParameters({id})
+        .execute()
     }
 }
 
