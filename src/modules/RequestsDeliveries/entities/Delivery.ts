@@ -24,7 +24,13 @@ class Delivery {
     deliveryman: Deliveryman;
 
     @Column()
+    end_date: Date
+
+    @Column()
     expected_finish_date: Date;
+
+    @Column()
+    total: number
 
     @CreateDateColumn()
     created_at: Date;

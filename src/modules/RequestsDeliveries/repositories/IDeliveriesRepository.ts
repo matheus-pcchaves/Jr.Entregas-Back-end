@@ -4,6 +4,8 @@ import { Delivery } from "../entities/Delivery";
 class IDeliveriesRepository {
     findRequestInProgress(request_id: string): Promise<Delivery>
     findDeliverymanAvailable(deliveryman_id: string): Promise<Delivery>
+    findByDeliveryman(deliveryman_id: string): Promise<Delivery[]>
+    findById(id: string): Promise<Delivery>
     create(data: IDeliveriesDTO): Promise<Delivery>
 }
 
