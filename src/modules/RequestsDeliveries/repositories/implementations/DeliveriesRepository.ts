@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { IsNull, getRepository, Repository } from "typeorm";
 import { IDeliveriesDTO } from "../../dtos/IDeliveriesDTO";
 import { Delivery } from "../../entities/Delivery";
 import { IDeliveriesRepository } from "../IDeliveriesRepository";
@@ -12,13 +12,17 @@ class DeliveriesRepository implements IDeliveriesRepository {
     }
             
     async findRequestInProgress(request_id: string): Promise<Delivery> {
-        const requestId = await this.repository.findOne({request_id})
+        const requestId = await this.repository.findOne({
+            where: {request_id, end_date: IsNull()}
+        })
 
         return requestId
     }
 
     async findDeliverymanAvailable(deliveryman_id: string): Promise<Delivery> {
-        const deliverymanId = await this.repository.findOne({deliveryman_id})
+        const deliverymanId = await this.repository.findOne({
+            where: {deliveryman_id, end_date: IsNull()}
+        })
 
         return deliverymanId
     }

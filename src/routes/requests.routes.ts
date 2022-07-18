@@ -1,7 +1,7 @@
 import { Router } from "express";
 
-import { ensureUsersAuthenticated } from "../middlewares/EnsureUsersAuthenticated";
-import { ensureDeliverymansAuthenticated } from "../middlewares/EnsureDeliverymansAuthenticated"
+import { ensureUsersAuthenticated } from "../middlewares/ensureUsersAuthenticated";
+import { ensureDeliverymansAuthenticated } from "../middlewares/ensureDeliverymansAuthenticated"
 import { CreateRequestsController } from "../modules/RequestsDeliveries/useCases/Requests/CreateRequests/CreateRequestController";
 import { ListPendingByCityController } from "../modules/RequestsDeliveries/useCases/Requests/ListPendingRequestsByCity/ListPendingByCityController"
 

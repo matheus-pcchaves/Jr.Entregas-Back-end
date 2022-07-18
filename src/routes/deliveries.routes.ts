@@ -2,7 +2,7 @@ import { Router } from "express";
 import { CreateDeliveriesController } from "../modules/RequestsDeliveries/useCases/Deliveries/CreateDeliveries/CreateDeliveriesController";
 
 import { ensureDeliverymansAuthenticated } from "../middlewares/ensureDeliverymansAuthenticated"
-import { FinishDeliveriesController } from "@modules/RequestsDeliveries/useCases/Deliveries/FinishDeliveries/FinishDeliveriesController";
+import { FinishDeliveriesController } from "../modules/RequestsDeliveries/useCases/Deliveries/FinishDeliveries/FinishDeliveriesController";
 
 const deliveryRoutes = Router()
 
