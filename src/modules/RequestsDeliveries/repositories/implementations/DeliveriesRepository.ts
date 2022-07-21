@@ -37,7 +37,7 @@ class DeliveriesRepository implements IDeliveriesRepository {
     }
 
     async findById(id: string): Promise<Delivery> {
-        const delivery = this.repository.findOne(id)
+        const delivery = this.repository.findOne({id})
 
         return delivery
     }

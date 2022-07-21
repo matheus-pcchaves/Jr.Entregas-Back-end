@@ -28,19 +28,13 @@ class FinishDeliveriesUseCase {
             throw new AppError('Delivery does not exists')
         }
 
-        const deliverymanExists = await this.deliveriesRepository.findDeliverymanAvailable(deliveryman_id)
-
-        if(!deliverymanExists){
-            throw new AppError('Incorrect deliveryman')
-        }
-
         let total = 0
 
         const dateNow = this.dateProvider.dateNow()
 
         const delayDays = this.dateProvider.compareInDays(dateNow, delivery.expected_finish_date)
 
-        total += delayDays - minimum_rate
+        total += minimum_rate - delayDays
 
         delivery.end_date = this.dateProvider.dateNow()
         delivery.total = total

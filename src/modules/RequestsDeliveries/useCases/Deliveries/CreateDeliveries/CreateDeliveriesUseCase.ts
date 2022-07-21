@@ -34,10 +34,10 @@ class CreateDeliveriesUseCase {
             throw new AppError('Request already in progress')
         }
 
-        const deliverymanAvailable = await this.deliveriesRepository.findDeliverymanAvailable(deliveryman_id)
+        const deliverymanUnavailable = await this.deliveriesRepository.findDeliverymanAvailable(deliveryman_id)
 
-        if(deliverymanAvailable){
-            throw new AppError('Deliveryman unavailable')
+        if(deliverymanUnavailable){
+            throw new AppError('There is a delivery already in progress for deliveryman')
         }
 
         const dateNow = this.dateProvider.dateNow()
