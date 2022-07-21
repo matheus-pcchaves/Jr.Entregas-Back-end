@@ -27,7 +27,7 @@ describe("Authenticate an user", () => {
 
         await createUserUseCase.execute(user)
 
-        const result = authenticateUserUseCase.execute({
+        const result = await authenticateUserUseCase.execute({
             email: user.email,
             password: user.password
         })
@@ -35,31 +35,29 @@ describe("Authenticate an user", () => {
         expect(result).toHaveProperty("token")
     })
 
-    it("Should not be able to authenticate a nonexistent user", () => {
-        expect(async () => {
-            await authenticateUserUseCase.execute({
-                email: "false@email.com",
-                password: "falsepassword"
-            })
-        }).rejects.toBeInstanceOf(AppError)
+    it("Should not be able to authenticate a nonexistent user", async () => {
+        await expect(authenticateUserUseCase.execute({
+            email: "unexistent email",
+            password: "unexistent password"
+        })
+        ).rejects.toBeInstanceOf(AppError)
     })
 
-    it("Should not be able to authenticate a nonexistent user", () => {
-        expect(async () => {
-            const user: IUsersDTO = {
-                name: "Test",
-                email: "test@email.com.br",
-                password: "tests",
-                cpfcnpj: "123456"
-            }
-    
-            await createUserUseCase.execute(user)
+    it("Should not be able to authenticate a nonexistent user", async () => {
+        const user: IUsersDTO = {
+            name: "Test",
+            email: "test@email.com.br",
+            password: "tests",
+            cpfcnpj: "123456"
+        }
 
-            await authenticateUserUseCase.execute({
-                email: "test@email.com.br",
-                password: "incorrect password"
-            })
-            
-        }).rejects.toBeInstanceOf(AppError)
+        await createUserUseCase.execute(user)
+
+        await expect(
+            authenticateUserUseCase.execute({
+            email: user.email,
+            password: "incorrect password"
+        })
+        ).rejects.toBeInstanceOf(AppError)
     })
 })
