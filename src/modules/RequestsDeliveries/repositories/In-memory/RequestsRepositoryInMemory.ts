@@ -3,7 +3,7 @@ import { Requests } from "@modules/RequestsDeliveries/entities/Requests";
 import { IRequestsRepository } from "../IRequestsRepository";
 
 class RequestsRepositoryInMemory implements IRequestsRepository{
-
+    
     requests: Requests[] = []
 
     async create({item_description, address, city_id, payment_id}: IRequestsDTO): Promise<Requests> {
@@ -31,6 +31,12 @@ class RequestsRepositoryInMemory implements IRequestsRepository{
         const cities = await this.requests.find((cities) => cities.city_id === city_id) 
 
         return cities
+    }
+
+    async updateStatus(id: string, isPending: boolean): Promise<void> {
+        const status = await this.requests.findIndex(request => request.id === id)
+        this.requests[status].isPending = isPending
+
     }
 }
 

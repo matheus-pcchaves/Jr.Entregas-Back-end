@@ -27,7 +27,7 @@ describe("Create a new city", () => {
         expect(cityCreated).toHaveProperty("id")
     })
 
-    it("Should not be able to create if name already exists", async() => {
+    it("Should not be able to create if name already exists", () => {
         expect(async () => {
             const city = {
                 name: "City Test",

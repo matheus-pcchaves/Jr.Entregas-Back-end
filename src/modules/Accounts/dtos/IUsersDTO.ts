@@ -6,3 +6,7 @@ interface IUsersDTO{
 }
 
 export { IUsersDTO }
+
+// 3610-5899
+// zap 99831-7306
+// senha é o cpf na area do aluno

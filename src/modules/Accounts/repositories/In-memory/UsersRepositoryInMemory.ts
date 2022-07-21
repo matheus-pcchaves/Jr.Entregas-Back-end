@@ -26,27 +26,19 @@ class UsersRepositoryInMemory implements IUsersRepository {
     }
 
     async findByName(name: string): Promise<User> {
-        const user = this.users.find((name) => user.name === name)
-
-        return user
+        return this.users.find(user => user.name === name)
     }
 
     async findByEmail(email: string): Promise<User> {
-        const user = this.users.find((email) => user.email === email)
-
-        return user
+        return this.users.find(user => user.email === email)
     }
 
     async findByDocument(cpfcnpj: string): Promise<User> {
-        const user = this.users.find((cpfcnpj) => user.cpfcnpj === cpfcnpj)
-
-        return user
+        return this.users.find(user => user.cpfcnpj === cpfcnpj)
     }
     
     async findById(id: string): Promise<User> {
-        const user = this.users.find((id) => user.id === id)
-
-        return user
+        return this.users.find(user => user.id === id)
     }
 }
 

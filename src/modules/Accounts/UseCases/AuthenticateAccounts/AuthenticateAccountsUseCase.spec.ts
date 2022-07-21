@@ -35,16 +35,16 @@ describe("Authenticate an user", () => {
         expect(result).toHaveProperty("token")
     })
 
-    it("Should not be able to authenticate a nonexistent user", async () => {
+    it("Should not be able to authenticate a nonexistent user", () => {
         expect(async () => {
-            const result = authenticateUserUseCase.execute({
+            await authenticateUserUseCase.execute({
                 email: "false@email.com",
                 password: "falsepassword"
             })
         }).rejects.toBeInstanceOf(AppError)
     })
 
-    it("Should not be able to authenticate a nonexistent user", async () => {
+    it("Should not be able to authenticate a nonexistent user", () => {
         expect(async () => {
             const user: IUsersDTO = {
                 name: "Test",
@@ -55,7 +55,7 @@ describe("Authenticate an user", () => {
     
             await createUserUseCase.execute(user)
 
-            const result = authenticateUserUseCase.execute({
+            await authenticateUserUseCase.execute({
                 email: "test@email.com.br",
                 password: "incorrect password"
             })
