@@ -4,6 +4,7 @@ import { AppError } from "../../../../../errors/AppError";
 import { IDeliveriesRepository } from "../../../repositories/IDeliveriesRepository";
 import { IDateProvider } from "../../../../../shared/container/providers/DateProvider/IDateProvider";
 import { Delivery } from "../../../entities/Delivery";
+import { IDeliverymansRepository } from "@modules/Accounts/repositories/IDeliverymansRepository";
 
 interface IRequest {
     id: string;
@@ -26,6 +27,12 @@ class FinishDeliveriesUseCase {
 
         if(!delivery){
             throw new AppError('Delivery does not exists')
+        }
+
+        const deliveryman = await this.deliveriesRepository.findByDeliveryman(deliveryman_id)
+
+        if(!deliveryman){
+            throw new AppError('Incorrect token')
         }
 
         let total = 0

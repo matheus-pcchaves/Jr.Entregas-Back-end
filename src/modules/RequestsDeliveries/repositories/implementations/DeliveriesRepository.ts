@@ -42,12 +42,15 @@ class DeliveriesRepository implements IDeliveriesRepository {
         return delivery
     }
 
-    async create({ request_id, deliveryman_id, expected_finish_date}: IDeliveriesDTO): Promise<Delivery> {
+    async create({ request_id, deliveryman_id, expected_finish_date, id, end_date, total}: IDeliveriesDTO): Promise<Delivery> {
 
         const delivery = await this.repository.create({
             request_id,
             deliveryman_id,
-            expected_finish_date
+            expected_finish_date,
+            id,
+            end_date,
+            total
         })
 
         await this.repository.save(delivery)
