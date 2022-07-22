@@ -10,6 +10,6 @@ const createDeliveriesController = new CreateDeliveriesController()
 const finishDeliveriesController = new FinishDeliveriesController()
 
 deliveryRoutes.post("/accept", ensureDeliverymansAuthenticated, createDeliveriesController.handle)
-deliveryRoutes.post("/finish/:id", finishDeliveriesController.handle)
+deliveryRoutes.post("/finish/:id", ensureDeliverymansAuthenticated, finishDeliveriesController.handle)
 
 export { deliveryRoutes }

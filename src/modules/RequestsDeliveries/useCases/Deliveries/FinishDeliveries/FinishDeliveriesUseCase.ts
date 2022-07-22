@@ -29,12 +29,6 @@ class FinishDeliveriesUseCase {
             throw new AppError('Delivery does not exists')
         }
 
-        const deliveryman = await this.deliveriesRepository.findByDeliveryman(deliveryman_id)
-
-        if(!deliveryman){
-            throw new AppError('Incorrect token')
-        }
-
         let total = 0
 
         const dateNow = this.dateProvider.dateNow()
