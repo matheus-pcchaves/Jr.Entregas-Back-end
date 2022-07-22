@@ -4,7 +4,7 @@ import { IRequestsRepository } from "../../../repositories/IRequestsRepository";
 import { Requests } from "../../../entities/Requests";
 
 interface IRequest{
-    city_id: string
+    city_id?: string
 }
 
 @injectable()
@@ -15,9 +15,9 @@ class ListPendingByCityUseCase {
         private requestsRepository: IRequestsRepository
     ){}
 
-    async execute(): Promise<Requests[]>{
+    async execute({city_id}: IRequest): Promise<Requests[]>{
 
-        const requestsCities = await this.requestsRepository.listByCityId()
+        const requestsCities = await this.requestsRepository.listByCityId(city_id)
 
         return requestsCities
     }

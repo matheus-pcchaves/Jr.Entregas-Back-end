@@ -25,10 +25,14 @@ class RequestsRepository implements IRequestsRepository {
         return request
     }
     
-    async listByCityId(): Promise<Requests[]> {
+    async listByCityId(city_id?: string): Promise<Requests[]> {
         const requestsQuery = await this.repository
         .createQueryBuilder("r")
         .where("isPending = :isPending", {isPending: true})
+
+        if(city_id){
+            requestsQuery.andWhere("city_id = :city_id", {city_id})
+        }
 
         const requests = await requestsQuery.getMany()
         return requests
