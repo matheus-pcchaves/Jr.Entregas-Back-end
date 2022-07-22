@@ -6,12 +6,12 @@ class ListPendingByCityController {
 
     async handle(request: Request, response: Response): Promise<Response>{
 
-        const { city_id } = request.query
+        const { city_id } = request.params
 
         const listPendingByCity = container.resolve(ListPendingByCityUseCase)
 
         const requests = await listPendingByCity.execute({ 
-            city_id: city_id as string 
+            city_id 
         })
 
         return response.json(requests)

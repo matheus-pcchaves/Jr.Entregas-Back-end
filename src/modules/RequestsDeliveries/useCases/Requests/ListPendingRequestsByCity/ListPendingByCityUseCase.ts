@@ -15,13 +15,9 @@ class ListPendingByCityUseCase {
         private requestsRepository: IRequestsRepository
     ){}
 
-    async execute({city_id}: IRequest): Promise<Requests[]>{
+    async execute(): Promise<Requests[]>{
 
-        const requestsCities = await this.requestsRepository.listByCityId(city_id)
-
-        if(!requestsCities){
-            throw new AppError('Incorrect City Id')
-        }
+        const requestsCities = await this.requestsRepository.listByCityId()
 
         return requestsCities
     }

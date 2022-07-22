@@ -13,7 +13,7 @@ class RequestsRepository implements IRequestsRepository {
     
     async create({item_description, address, city_id, payment_id }: IRequestsDTO): Promise<Requests> {
 
-        const request = this.repository.create({
+        const request = await this.repository.create({
             item_description,
             address,
             city_id,
@@ -25,15 +25,13 @@ class RequestsRepository implements IRequestsRepository {
         return request
     }
     
-    async listByCityId(cityId: string): Promise<Requests[]> {
-        const requestsQuery = await this.repository.find({
-            where: {
-                city_id: cityId
-            },
-            relations: ["city"]
-        })
+    async listByCityId(): Promise<Requests[]> {
+        const requestsQuery = await this.repository
+        .createQueryBuilder("r")
+        .where("isPending = :isPending", {isPending: true})
 
-        return requestsQuery
+        const requests = await requestsQuery.getMany()
+        return requests
     }
 
     async findByCity(city_id: string): Promise<Requests> {
