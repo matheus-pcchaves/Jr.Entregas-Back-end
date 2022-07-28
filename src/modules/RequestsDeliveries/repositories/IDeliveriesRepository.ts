@@ -1,7 +1,7 @@
 import { IDeliveriesDTO } from "../dtos/IDeliveriesDTO";
 import { Delivery } from "../entities/Delivery";
 
-class IDeliveriesRepository {
+interface IDeliveriesRepository {
     findRequestInProgress(request_id: string): Promise<Delivery>
     findDeliverymanAvailable(deliveryman_id: string): Promise<Delivery>
     findByDeliveryman(deliveryman_id: string): Promise<Delivery[]>
