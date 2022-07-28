@@ -27,12 +27,6 @@ class RequestsRepositoryInMemory implements IRequestsRepository{
         return this.requests.filter(cities[city_id])
     }
 
-    async findByCity(city_id: string): Promise<Requests> {
-        const cities = await this.requests.find((cities) => cities.city_id === city_id) 
-
-        return cities
-    }
-
     async updateStatus(id: string, isPending: boolean): Promise<void> {
         const status = await this.requests.findIndex(request => request.id === id)
         this.requests[status].isPending = isPending

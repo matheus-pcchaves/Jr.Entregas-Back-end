@@ -38,12 +38,6 @@ class RequestsRepository implements IRequestsRepository {
         return requests
     }
 
-    async findByCity(city_id: string): Promise<Requests> {
-        const requestCity = await this.repository.findOne({city_id})
-
-        return requestCity
-    }
-
     async updateStatus(id: string, isPending: boolean): Promise<void> {
         await this.repository
         .createQueryBuilder()
