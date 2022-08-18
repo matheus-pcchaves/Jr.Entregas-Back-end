@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { CreateUsersController } from "../modules/Accounts/UseCases/CreateUsers/CreateUsersController"
-import { CreateDeliverymansController } from "../modules/Accounts/UseCases/CreateDeliverymans/CreateDeliverymansController"
+import { CreateUsersController } from "../modules/Accounts/useCases/CreateUsers/CreateUsersController"
+import { CreateDeliverymansController } from "../modules/Accounts/useCases/CreateDeliverymans/CreateDeliverymansController"
 
 const usersRoutes = Router()
 const entregadoresRoutes = Router()
