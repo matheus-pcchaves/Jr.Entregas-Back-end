@@ -1,8 +1,8 @@
-import { AppError } from "@errors/AppError";
-import { Delivery } from "@modules/RequestsDeliveries/entities/Delivery";
-import { IDeliveriesRepository } from "@modules/RequestsDeliveries/repositories/IDeliveriesRepository";
-import { IRequestsRepository } from "@modules/RequestsDeliveries/repositories/IRequestsRepository";
-import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
+import { AppError } from "../../../../../errors/AppError";
+import { Delivery } from "../../../entities/Delivery";
+import { IDeliveriesRepository } from "../../../repositories/IDeliveriesRepository";
+import { IRequestsRepository } from "../../../repositories/IRequestsRepository";
+import { IDateProvider } from "../../../../../shared/container/providers/DateProvider/IDateProvider";
 import { inject, injectable } from "tsyringe";
 
 interface IRequest {
